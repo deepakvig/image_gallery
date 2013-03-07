@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :user do
     email { Faker::Internet.email }
-    password { Faker::Lorem.words.split(' ').join }
+    password "iiit1234" 
 
     factory :admin_user do
       email "admin@example.com"

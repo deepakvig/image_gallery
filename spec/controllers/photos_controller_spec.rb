@@ -19,6 +19,9 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe PhotosController do
+  before :each do
+    @album = create(:album)
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # Photo. As you add validations to Photo, be sure to
@@ -31,16 +34,16 @@ describe PhotosController do
   shared_examples("public access to photos") do 
     describe "GET index" do
       it "assigns all photos as @photos" do
-        photo = Photo.create! attributes_for(:photo)
-        get :index
+        photo = @album.photos.create! attributes_for(:photo)
+        get :index, {album_id: @album.to_param}
         assigns(:photos).should eq([photo])
       end
     end
 
     describe "GET show" do
       it "assigns the requested photo as @photo" do
-        photo = Photo.create! attributes_for(:photo)
-        get :show, {:id => photo.to_param}
+        photo = @album.photos.create! attributes_for(:photo)
+        get :show, {:id => photo.to_param, album_id: @album.to_param}
         assigns(:photo).should eq(photo)
       end
     end
@@ -49,15 +52,15 @@ describe PhotosController do
   shared_examples("full access to photos") do
     describe "GET new" do
       it "assigns a new photo as @photo" do
-        get :new
+        get :new, {album_id: @album.to_param}
         assigns(:photo).should be_a_new(Photo)
       end
     end
 
     describe "GET edit" do
       it "assigns the requested photo as @photo" do
-        photo = Photo.create! attributes_for(:photo)
-        get :edit, {:id => photo.to_param}
+        photo = @album.photos.create! attributes_for(:photo)
+        get :edit, {:id => photo.to_param, album_id: @album.to_param}
         assigns(:photo).should eq(photo)
       end
     end
@@ -66,19 +69,19 @@ describe PhotosController do
       describe "with valid params" do
         it "creates a new Photo" do
           expect {
-            post :create, {:photo => attributes_for(:photo)}
+            post :create, {album_id: @album.to_param, :photo => attributes_for(:photo)}
           }.to change(Photo, :count).by(1)
         end
 
         it "assigns a newly created photo as @photo" do
-          post :create, {:photo => attributes_for(:photo)}
+          post :create, {album_id: @album.to_param, :photo => attributes_for(:photo)}
           assigns(:photo).should be_a(Photo)
           assigns(:photo).should be_persisted
         end
 
         it "redirects to the created photo" do
-          post :create, {:photo => attributes_for(:photo)}
-          response.should redirect_to(Photo.last)
+          post :create, {album_id: @album.to_param, :photo => attributes_for(:photo)}
+          response.should redirect_to([@album, Photo.last])
         end
       end
 
@@ -86,14 +89,14 @@ describe PhotosController do
         it "assigns a newly created but unsaved photo as @photo" do
           # Trigger the behavior that occurs when invalid params are submitted
           Photo.any_instance.stub(:save).and_return(false)
-          post :create, {:photo => { "caption" => "invalid value" }}
+          post :create, {album_id: @album.to_param, :photo => { "caption" => "invalid value" }}
           assigns(:photo).should be_a_new(Photo)
         end
 
         it "re-renders the 'new' template" do
           # Trigger the behavior that occurs when invalid params are submitted
           Photo.any_instance.stub(:save).and_return(false)
-          post :create, {:photo => { "caption" => "invalid value" }}
+          post :create, {album_id: @album.to_param, :photo => { "caption" => "invalid value" }}
           response.should render_template("new")
         end
       end
@@ -102,42 +105,42 @@ describe PhotosController do
     describe "PUT update" do
       describe "with valid params" do
         it "updates the requested photo" do
-          photo = Photo.create! attributes_for(:photo)
+          photo = @album.photos.create! attributes_for(:photo)
           # Assuming there are no other photos in the database, this
           # specifies that the Photo created on the previous line
           # receives the :update_attributes message with whatever params are
           # submitted in the request.
           Photo.any_instance.should_receive(:update_attributes).with({ "caption" => "MyString" })
-          put :update, {:id => photo.to_param, :photo => { "caption" => "MyString" }}
+          put :update, {album_id: @album.to_param, :id => photo.to_param, :photo => { "caption" => "MyString" }}
         end
 
         it "assigns the requested photo as @photo" do
-          photo = Photo.create! attributes_for(:photo) 
-          put :update, {:id => photo.to_param, :photo => attributes_for(:photo)}
+          photo = @album.photos.create! attributes_for(:photo) 
+          put :update, {:id => photo.to_param, album_id: @album.to_param, :photo => attributes_for(:photo)}
           assigns(:photo).should eq(photo)
         end
 
         it "redirects to the photo" do
-          photo = Photo.create! attributes_for(:photo)
-          put :update, {:id => photo.to_param, :photo => attributes_for(:photo)}
-          response.should redirect_to(photo)
+          photo = @album.photos.create! attributes_for(:photo)
+          put :update, {:id => photo.to_param, album_id: @album.to_param, :photo => attributes_for(:photo)}
+          response.should redirect_to([@album, photo])
         end
       end
 
       describe "with invalid params" do
         it "assigns the photo as @photo" do
-          photo = Photo.create! attributes_for(:photo)
+          photo = @album.photos.create! attributes_for(:photo)
           # Trigger the behavior that occurs when invalid params are submitted
           Photo.any_instance.stub(:save).and_return(false)
-          put :update, {:id => photo.to_param, :photo => { "caption" => "invalid value" }}
+          put :update, {:id => photo.to_param, album_id: @album.to_param, :photo => { "caption" => "invalid value" }}
           assigns(:photo).should eq(photo)
         end
 
         it "re-renders the 'edit' template" do
-          photo = Photo.create! attributes_for(:photo)
+          photo = @album.photos.create! attributes_for(:photo)
           # Trigger the behavior that occurs when invalid params are submitted
           Photo.any_instance.stub(:save).and_return(false)
-          put :update, {:id => photo.to_param, :photo => { "caption" => "invalid value" }}
+          put :update, {:id => photo.to_param, album_id: @album.to_param, :photo => { "caption" => "invalid value" }}
           response.should render_template("edit")
         end
       end
@@ -145,16 +148,16 @@ describe PhotosController do
 
     describe "DELETE destroy" do
       it "destroys the requested photo" do
-        photo = Photo.create! attributes_for(:photo)
+        photo = @album.photos.create! attributes_for(:photo)
         expect {
-          delete :destroy, {:id => photo.to_param}
+          delete :destroy, {:id => photo.to_param, album_id: @album.to_param}
         }.to change(Photo, :count).by(-1)
       end
 
       it "redirects to the photos list" do
-        photo = Photo.create! attributes_for(:photo)
-        delete :destroy, {:id => photo.to_param}
-        response.should redirect_to(photos_url)
+        photo = @album.photos.create! attributes_for(:photo)
+        delete :destroy, {:id => photo.to_param, album_id: @album.to_param}
+        response.should redirect_to(album_photos_url(@album))
       end
     end
   end
@@ -174,30 +177,30 @@ describe PhotosController do
 
     describe "GET#new" do
       it "requires login" do
-        get :new
+        get :new, {album_id: @album.to_param}
         response.should redirect_to(new_user_session_url)
       end
     end
 
     describe "POST#create" do
       it "requires login" do
-        post :create, photo: attributes_for(:photo)
+        post :create, {album_id: @album.to_param, photo: attributes_for(:photo)}
         response.should redirect_to(new_user_session_url)
       end
     end
 
     describe "PUT#update" do
       it "requires login" do
-        photo = Photo.create! attributes_for(:photo)
-        put :update, {:id => photo.to_param, :photo => { "caption" => "MyString" }}
+        photo = @album.photos.create! attributes_for(:photo)
+        put :update, {:id => photo.to_param, album_id: @album.to_param, :photo => { "caption" => "MyString" }}
         response.should redirect_to(new_user_session_url)
       end
     end
 
     describe "DELETE#destroy" do
       it "requires login" do
-        photo = Photo.create! attributes_for(:photo)
-        delete :destroy, {:id => photo.to_param, :photo => { "caption" => "MyString" }}
+        photo = @album.photos.create! attributes_for(:photo)
+        delete :destroy, {:id => photo.to_param, album_id: @album.to_param, :photo => { "caption" => "MyString" }}
         response.should redirect_to(new_user_session_url)
       end
     end

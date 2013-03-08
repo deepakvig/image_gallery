@@ -6,4 +6,5 @@ class Album < ActiveRecord::Base
 
   has_many :tags, as: :taggable
   has_many :comments, as: :commentable
+  has_many :photos
 end

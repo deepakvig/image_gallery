@@ -5,7 +5,7 @@ FactoryGirl.define do
     caption "MyString"
     description "MyText"
     image "MyString"
-    association :album
+    #association :album
   end
 
   factory :invalid_photo do

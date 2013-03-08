@@ -1,4 +1,7 @@
 ImageGallery::Application.routes.draw do
+  resources :photos
+
+
   resources :albums
 
 

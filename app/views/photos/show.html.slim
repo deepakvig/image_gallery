@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Caption:
+  = @photo.caption
+p
+  strong Description:
+  = @photo.description
+p
+  strong Image:
+  = @photo.image
+p
+  strong Album:
+  = @photo.album
+
+= link_to 'Edit', edit_photo_path(@photo)
+'|
+= link_to 'Back', photos_path

@@ -1,26 +1,10 @@
 h1 Listing albums
 
-table
-  tr
-    th Title
-    th Description
-    th Caption
-    th Blog link
-    th User
-    th
-    th
-    th
-
-  - @albums.each do |album|
-    tr
-      td = album.title
-      td = album.description
-      td = album.caption
-      td = album.blog_link
-      td = album.user
-      td = link_to 'Show', album
-      td = link_to 'Edit', edit_album_path(album)
-      td = link_to 'Destroy', album, :confirm => 'Are you sure?', :method => :delete
+- @albums.each do |album|
+  .polaroid
+    img[src="http://designsnack.com/screenshots/image.php?width=330&amp;height=220&amp;cropratio=330:220&amp;image=/screenshots/8264948088.jpg" alt="Colloseum" data-link="#{album_url(album)}"]
+    p= album.title
+    p= link_to "View Album", album
 
 br
 

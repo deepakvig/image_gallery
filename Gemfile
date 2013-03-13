@@ -36,6 +36,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'slim', '1.2.0'
 gem 'slim-rails'
 gem 'carrierwave'

@@ -99,3 +99,38 @@ li {
 .center-text {
   text-align:center
 }
+
+.ih { position:relative; }
+.ih, .ih-image, .ih-info { display:block;width:330px;height:220px; }
+.ih-image, .ih-info { z-index:500;position:absolute;top:0;left:0;right:0;bottom:0; }
+.ih-info { z-index:501;background:black;color:white; }
+
+
+#photo {
+	width:300px;
+	height:300px;
+	position:relative;
+}
+#photo img {
+	position:absolute;
+}
+ 
+#caption {
+	position:absolute;
+        bottom:0px;
+        width:280px;
+	height:100px;
+	padding:10px;
+	background-color:#000;
+	color:#fff;
+        opacity: 0.8;
+	filter:alpha(opacity=80);
+	-moz-opacity:0.8;
+	-khtml-opacity: 0.8;
+}
+
+body, div, img, p { padding:0; margin:0; }
+body { overflow:hidden; background-image:url(../images/bg.jpg); }
+.polaroid { width:368px; height:376px; background-image:url(../images/polaroid-bg.png); position:absolute; }
+.polaroid img { width:335px; height:275px; margin:25px 0 0 15px; }
+.polaroid p { text-align:center; font-family:Georgia,serif; font-size:20px; color:#2E2E2E; margin-top:15px; }

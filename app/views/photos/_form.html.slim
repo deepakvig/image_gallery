@@ -1,4 +1,7 @@
-= form_for @photo do |f|
+h2
+  = @album.title
+
+= form_for [@album, @photo] do |f|
   - if @photo.errors.any?
     #error_explanation
       h2 = "#{pluralize(@photo.errors.count, "error")} prohibited this photo from being saved:"
@@ -15,7 +18,4 @@
   .field
     = f.label :image
     = f.text_field :image
-  .field
-    = f.label :album
-    = f.text_field :album
   .actions = f.submit 'Save'

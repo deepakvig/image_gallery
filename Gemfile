@@ -33,12 +33,14 @@ group :assets do
   gem "twitter-bootstrap-rails"
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-fileupload-rails'
 end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'slim', '1.2.0'
 gem 'slim-rails'
+gem 'rmagick'
 gem 'carrierwave'
 gem 'devise'
 gem 'cancan'

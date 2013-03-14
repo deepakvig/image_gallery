@@ -4,6 +4,7 @@
     img[src="http://designsnack.com/screenshots/image.php?width=330&amp;height=220&amp;cropratio=330:220&amp;image=/screenshots/8264948088.jpg" alt="Colloseum" data-link="#{album_url(album)}"]
     p= album.title
     p= link_to "View Album", album
+    p= link_to "Edit Album", edit_album_path(album) if can? :edit, Album
 
 br
 

@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
+  check_authorization
   load_and_authorize_resource :album
   load_and_authorize_resource :photo, through: :album
   #before_filter :initialize_album

@@ -10,16 +10,20 @@ table
     th
     th
 
+.tiles
   - @photos.each do |photo|
-    tr
+    a[href=photo.image_url]
+      = image_tag photo.image_url, :alt => photo.caption
+    /tr
       td = photo.caption
       td = photo.description
-      td = photo.image
-      td = photo.album
+      td = image_tag photo.image_url
+      td = photo.album.title
       td = link_to 'Show', [@album, photo]
-      td = link_to 'Edit', edit_album_photo_path(photo)
-      td = link_to 'Destroy', photo, :confirm => 'Are you sure?', :method => :delete
+      td = link_to 'Edit', edit_album_photo_path(@album, photo)
+      td = link_to 'Destroy', [@album, photo], :confirm => 'Are you sure?', :method => :delete
 
 br
 
 = link_to 'New Photo', new_album_photo_path(@album)
+

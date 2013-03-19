@@ -1,0 +1,46 @@
+doctype 5
+html
+  head
+    title Photo Gallery 
+    = stylesheet_link_tag "application", :media => "all"
+    = stylesheet_link_tag "/css/demo.css", :media => "all"
+    = stylesheet_link_tag "/css/jquery.lightbox-0.5.css", :media => "all"
+    = stylesheet_link_tag "/css/jquery-tilesgallery.css", :media => "all"
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = javascript_include_tag "/js/jquery-1.7.1.min.js"
+    = javascript_include_tag "/js/jquery.lightbox-0.5.pack.js"
+    = javascript_include_tag "/js/jquery.tilesgallery.js"
+    = csrf_meta_tags
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.brand href="#{root_url}" Photo Gallery 
+          .nav-collapse.collapse.navbar-responsive-collapse
+            ul.nav
+              li.active
+                a Home
+              li
+                a href="#" About Me
+            ul.nav.pull-right
+              - if user_signed_in?
+                li
+                  a href="#"
+                    = current_user.email
+                li.divider-vertical
+                li= link_to "Sign out", destroy_user_session_url, :method => :delete
+              - else
+                li= link_to "Sign In", new_user_session_url
+
+    .container
+      - if notice
+        p.notice.alert
+          = notice
+      - if alert
+        p.alert.alert-error
+          = alert
+      = yield
+
+
+

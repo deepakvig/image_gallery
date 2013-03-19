@@ -1,5 +1,14 @@
 h1 Add photos
 
-== render 'form'
+= form_for [@album, @photo] do |f|
+  = f.label :image, "Upload paintings:"
+  = f.file_field :image, multiple: true, name: "photo[image]"
+
+script id="template-upload" type="text/x-tmpl"
+  .upload
+    /{%=o.name%}
+    .progress
+      .bar style="width: 0%"
+
 
 = link_to 'Back', album_photos_path(@album)

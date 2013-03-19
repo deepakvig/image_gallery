@@ -14,8 +14,7 @@ h2
     = f.text_field :caption
   .field
     = f.label :description
-    = f.text_area :description
+    = f.text_area :description, :rows => "4"
   .field
-    = f.label :image
-    = f.text_field :image
+    = f.file_field :image
   .actions = f.submit 'Save'

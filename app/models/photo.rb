@@ -5,7 +5,9 @@ class Photo < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   #validates_presence_of :caption, :description, :image
-  before_create :default_name do
+  before_create :default_name
+
+  def default_name
     self.caption ||= File.basename(image.filename, ".*").titleize if image
   end
 end

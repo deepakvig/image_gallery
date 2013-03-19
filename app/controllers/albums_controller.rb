@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
+  check_authorization
   load_and_authorize_resource
 
   # GET /albums

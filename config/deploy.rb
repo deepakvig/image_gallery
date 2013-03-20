@@ -8,7 +8,7 @@ set :repository, "git@github.com:deepakvig/image_gallery.git"
 set :branch, "master"
 
 set :user, "deepakvig"
-set :password, "d33180pak"
+set :password, ""
 set :runner, user
 set :use_sudo, false
 

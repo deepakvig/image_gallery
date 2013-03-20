@@ -21,7 +21,7 @@ role :web, servers
 role :db, servers, :primary => true
 
 default_run_options[:pty] = false
-
+ssh_options[:forward_agent] = true
 
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`

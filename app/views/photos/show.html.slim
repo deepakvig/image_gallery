@@ -13,6 +13,6 @@ p
   strong Album:
   = @photo.album
 
-= link_to 'Edit', edit_album_photo_path([@album, @photo])
+= link_to 'Edit', edit_album_photo_path(@photo)
 '|
 = link_to 'Back', album_photos_path(@album)

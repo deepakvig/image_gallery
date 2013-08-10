@@ -1,14 +1,3 @@
-h1 Listing photos
-
-table
-  tr
-    th Caption
-    th Description
-    th Image
-    th Album
-    th
-    th
-    th
 
 .tiles
   - @photos.each do |photo|
@@ -25,5 +14,5 @@ table
 
 br
 
-= link_to 'New Photo', new_album_photo_path(@album)
+= link_to 'New Photo', new_album_photo_path(@album) if can? :create, Album
 

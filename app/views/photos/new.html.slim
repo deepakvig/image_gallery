@@ -3,6 +3,7 @@ h1 Add photos
 = form_for [@album, @photo] do |f|
   = f.label :image, "Upload paintings:"
   = f.file_field :image, multiple: true, name: "photo[image]"
+  = f.submit
 
 script id="template-upload" type="text/x-tmpl"
   .upload

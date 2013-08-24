@@ -52,6 +52,7 @@ gem 'carrierwave'
 gem 'devise'
 gem 'cancan'
 gem 'acts-as-taggable-on'
+gem 'blogit'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

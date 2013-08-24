@@ -9,6 +9,9 @@ ImageGallery::Application.routes.draw do
   devise_for :users
 
   root :to => 'albums#index'
+
+  mount Blogit::Engine => "/blog"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

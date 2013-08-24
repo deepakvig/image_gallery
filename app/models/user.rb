@@ -9,7 +9,13 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
+  blogs
+
   def admin?
     email == "admin@example.com"
+  end
+  
+  def username
+    email
   end
 end

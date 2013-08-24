@@ -14,11 +14,11 @@
 
   <fieldset>
     <%= field do %>
-      <%= f.text_field :title, placeholder: t(:give_your_post_a_title, scope: 'blogit.posts') %>
+      <%= f.text_field :title, placeholder: t(:give_your_post_a_title, scope: 'blogit.posts'), class: "post_title" %>
     <% end %>
 
     <%= field do %>
-      <%= f.text_area :body, placeholder: t(:write_something_here, scope: 'blogit.posts') %>
+      <%= f.text_area :body, placeholder: t(:write_something_here, scope: 'blogit.posts'), class: "post_textarea" %>
     <% end %>
   </fieldset>
 
@@ -26,7 +26,7 @@
 
     <%= field id: "new_blog_post_tag_field" do %>
       <%= f.label :tag_list, t(:tags, scope: 'blogit.posts') %>
-      <%= f.text_field :tag_list, placeholder: t(:tag_placeholder, scope: 'blogit.posts') %>
+      <%= f.text_field :tag_list, placeholder: t(:tag_placeholder, scope: 'blogit.posts'), class: "post_tags" %>
     <% end %>
 
     <p class="blog_post_tip">

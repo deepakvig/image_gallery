@@ -1,7 +1,7 @@
 
 <%= form_for [post, comment], remote: true,
   html: {
-    class: "new_blog_comment", id: "new_blog_comment" } do |f| -%>
+    class: "new_blog_comment bs-example", id: "new_blog_comment" } do |f| -%>
 
   <p><%=t :leave_a_comment, scope: 'blogit.comments'%></p>
 
@@ -11,31 +11,44 @@
     Hide me using CSS
   <% end %>
 
-  <%= field do %>
-    <%= f.label :name, t(:name, scope: 'blogit.comments') %><br>
-    <%= f.text_field :name %>
+  <%= field class: "form-group" do %>
+    <%= f.label :name, t(:name, scope: 'blogit.comments'), class: "control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
     <%= errors_on(comment, :name) %>
   <% end %>
 
-  <%= field do %>
-    <%= f.label :email, t(:email_never_displayed, scope: 'blogit.comments') %><br>
-    <%= f.email_field :email %>
+  <%= field class: "form-group" do %>
+    <%= f.label :email, t(:email_never_displayed, scope: 'blogit.comments'), class: "control-label" %>
+    <div class="col-lg-10">
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
     <%= errors_on(comment, :email) %>
   <% end %>
 
-  <%= field do %>
-    <%= f.label :website, t(:your_website, scope: 'blogit.comments') %><br>
-    <%= f.url_field :website %>
+  <%= field class: "form-group" do %>
+    <%= f.label :website, t(:your_website, scope: 'blogit.comments'), class: "control-label" %>
+    <div class="col-lg-10">
+      <%= f.url_field :website, class: "form-control" %>
+    </div>
     <%= errors_on(comment, :website) %>
   <% end %>
 
-  <%= field do %>
-    <%= f.label :body, t(:your_comment, scope: 'blogit.comments') %><br>
-    <%= f.text_area :body %><br>
+  <%= field class: "form-group" do %>
+    <%= f.label :body, t(:your_comment, scope: 'blogit.comments'), class: "control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_area :body, class: "form-control" %><br>
+    </div>
     <%= errors_on(comment, :body) %>
   <% end %>
 
-  <%= actions do %>
-    <%= f.submit t(:add_comment, scope: 'blogit.comments'), :disable_with => t(:adding_comment, scope: 'blogit.comments') %>
+  <%= field class: "form-group" do %>
+  <div class="control-label"></div>
+    <div class="col-lg-10">
+      <%= actions do %>
+        <%= f.submit t(:add_comment, scope: 'blogit.comments'), :disable_with => t(:adding_comment, scope: 'blogit.comments') %>
+      <% end %>
+    </div>
   <% end %>
-<% end -%>
+<% end %>

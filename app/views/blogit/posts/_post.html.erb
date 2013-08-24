@@ -3,14 +3,20 @@
   <%# Render the header for this blog post %>
   <%= render "blogit/posts/post_head", post: post %>
 
+  <%# Render info about the person who wrote this post %>
+  <%= render "blogit/posts/blogger_information", post: post %>
+
+  <div class="post-content">
   <%# Render the body of this blog post (as Markdown) %>
   <%= render "blogit/posts/post_body", post: post %>
+  
+  <div class="readmorecontent">
+  <%= link_to "Read More", post, class: "readmore"%>
+  </div>
+  </div>
 
   <%# Render admin links to edit/delete this post %>
   <%= render "blogit/posts/post_links", post: post %>
-
-  <%# Render info about the person who wrote this post %>
-  <%= render "blogit/posts/blogger_information", post: post %>
 
   <%# Render the no. of comments %>
   <%= render "blogit/posts/comments_count",

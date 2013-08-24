@@ -1,8 +1,8 @@
 
 .tiles
   - @photos.each do |photo|
-    a[href=photo.image_url]
-      = image_tag photo.image_url, :alt => photo.caption
+    a[href=photo.image_url(:display)]
+      = image_tag photo.image_url(:display), :alt => photo.caption
     /tr
       td = photo.caption
       td = photo.description

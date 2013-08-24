@@ -4,7 +4,7 @@ class Album < ActiveRecord::Base
 
   validates_presence_of :title, :caption, :description
 
-  has_many :tags, as: :taggable
+  acts_as_taggable
   has_many :comments, as: :commentable
   has_many :photos
 end

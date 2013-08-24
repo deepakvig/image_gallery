@@ -41,8 +41,8 @@ $(document).ready(function() {
       zindexnr++;
       cssObj = {
         "z-index": zindexnr,
-        transform: "rotate(0deg)",
-        "-webkit-transform": "rotate(0deg)"
+        //transform: "rotate(0deg)",
+        //"-webkit-transform": "rotate(0deg)"
       };
       return $(this).css(cssObj);
     }
@@ -73,13 +73,13 @@ $(document).ready(function() {
       cssObj = {
         "box-shadow": "",
         "-webkit-box-shadow": "",
-        transform: "rotate(" + rotDegrees + "deg)",
-        "-webkit-transform": "rotate(" + rotDegrees + "deg)",
+        //transform: "rotate(" + matrix + "deg)",
+        //"-webkit-transform": "rotate(" + matrix + "deg)",
         "margin-left": "0px",
         "margin-top": "0px"
       };
-      $(this).css(cssObj);
-      return dragging = false;
+      dragging = false;
+      return $(this).css(cssObj);
     }
   });
 });

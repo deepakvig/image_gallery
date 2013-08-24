@@ -1,7 +1,8 @@
 
 - @albums.each do |album|
   .polaroid
-    = image_tag album.photos.first.image_url(:thumb), alt: album.title, data: { link: "#{album_url(album)}"}
+    - if !album.photos.blank?
+      = image_tag album.photos.first.image_url(:thumb), alt: album.title, data: { link: "#{album_url(album)}"}
     p= album.title
     p= link_to "View Album", album_photos_path(album)
     p= link_to "Edit Album", edit_album_path(album) if can? :edit, Album

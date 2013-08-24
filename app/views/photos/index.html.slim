@@ -6,7 +6,7 @@
     /tr
       td = photo.caption
       td = photo.description
-      td = image_tag photo.image_url
+      td = image_tag photo.image_url(:display)
       td = photo.album.title
       td = link_to 'Show', [@album, photo]
       td = link_to 'Edit', edit_album_photo_path(@album, photo)
